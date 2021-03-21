@@ -12,6 +12,7 @@ import starshipsImage from "../../assets/images/starships.png";
 // redux
 import { connect } from "react-redux";
 import { getStarships } from "./redux/action";
+import history from "../../routes/history";
 
 const { Header, Sider, Content } = Layout;
 function Home(props) {
@@ -39,6 +40,7 @@ function Home(props) {
     const renderItem = starships.map((item) => {
       return (
         <Card
+          onClick={() => history.push("/details")}
           className="card"
           style={{
             width: "60vw",
@@ -83,7 +85,7 @@ function Home(props) {
             icon={
               <HomeTwoTone
                 style={{
-                  fontSize: "32px",
+                  fontSize: "2.5rem",
                 }}
               />
             }
@@ -91,9 +93,10 @@ function Home(props) {
               height: "8vh",
               display: "flex",
               flex: 1,
-              padding: 0,
+              paddingLeft: "1vw",
               justifyContent: "center",
               alignItems: "center",
+              fontSize: "1rem",
             }}
           >
             Home
@@ -103,7 +106,7 @@ function Home(props) {
             icon={
               <UserOutlined
                 style={{
-                  fontSize: "32px",
+                  fontSize: "2.5rem",
                 }}
               />
             }
@@ -111,9 +114,10 @@ function Home(props) {
               height: "8vh",
               display: "flex",
               flex: 1,
-              padding: 0,
+              paddingLeft: "1vw",
               justifyContent: "center",
               alignItems: "center",
+              fontSize: "1rem",
             }}
           >
             Profile
@@ -127,7 +131,7 @@ function Home(props) {
             paddingRight: "2vw",
             paddingLeft: "2vw",
             color: "white",
-            fontSize: "20px",
+            fontSize: "1.5rem",
           }}
         >
           {React.createElement(
@@ -143,8 +147,8 @@ function Home(props) {
           style={{
             display: "flex",
             flex: "row",
-            margin: "24px 16px",
-            padding: 24,
+            margin: "1.5rem 1rem",
+            padding: "1.5rem",
             minHeight: 280,
             overflowY: "scroll",
           }}
@@ -155,6 +159,7 @@ function Home(props) {
 
           <Image
             width="28vw"
+            style={{ position: "absolute" }}
             src={starshipsImage}
             placeholder={
               <Image preview={false} width="28vw" src={starshipsImage} />

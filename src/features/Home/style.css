@@ -1,7 +1,7 @@
 #components-layout-demo-custom-trigger .trigger {
-  padding: 0 24px;
-  font-size: 18px;
-  line-height: 64px;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+  line-height: 4rem;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -14,9 +14,9 @@
   color: #1890ff;
 }
 
-#components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  margin: 16px;
+#components-layout-demo-custom-trigger {
+  height: 2.5rem;
+  margin: 1.2rem;
   background: rgba(255, 255, 255, 0.3);
 }
 
@@ -38,12 +38,12 @@
 }
 
 .title {
-  font-size: 14px;
+  font-size: 1rem;
   margin-bottom: 0;
 }
 
 .data {
-  font-size: 40px;
+  font-size: 3rem;
   font-weight: 600;
   text-transform: capitalize;
 }
