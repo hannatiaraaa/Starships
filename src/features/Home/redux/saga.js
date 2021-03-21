@@ -7,8 +7,8 @@ import { STARSHIPS } from "../../../utils/endPoint";
 // action
 import { GET_SEARCH, GET_STARSHIPS, setStarships } from "./action";
 
-function* getStarshipsSaga() {
-  const res = yield call(request, `${STARSHIPS}`, "GET");
+function* getStarshipsSaga({ page = 1 }) {
+  const res = yield call(request, `${STARSHIPS}?page=${page}`, "GET");
 
   if (res.status) {
     yield put(

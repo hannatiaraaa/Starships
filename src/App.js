@@ -8,8 +8,12 @@ export default function App() {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact={true} component={Home} path="/" />
-        <Route exact={true} component={Details} path="/details" />
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/details">
+          <Details />
+        </Route>
       </Switch>
     </Router>
   );

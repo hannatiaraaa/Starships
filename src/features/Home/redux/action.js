@@ -2,9 +2,10 @@ export const GET_STARSHIPS = "GET_STARSHIPS";
 export const GET_SEARCH = "GET_SEARCH";
 export const SET_STARSHIPS = "SET_STARSHIPS";
 
-export const getStarships = () => {
+export const getStarships = (page) => {
   return {
     type: GET_STARSHIPS,
+    page,
   };
 };
 

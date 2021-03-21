@@ -13,20 +13,38 @@ import history from "../../routes/history";
 // redux
 import { connect } from "react-redux";
 import { getStarships, getSearch } from "./redux/action";
+import Loader from "../../components/Loader";
 
 const { Header, Sider, Content } = Layout;
 const { Search } = Input;
 
 function Home(props) {
-  const { starships } = props;
+  const { starships, prevPage, nextPage } = props;
   const [collapsed, setCollapsed] = useState(true);
+  const [dataStarship, setDataStarship] = useState([]);
   const [search, setSearch] = useState("");
+  const [next, setNext] = useState("");
 
   useEffect(() => {
     if (search.length === 0) {
-      props.getStarships();
+      manipuateData();
     }
   }, [search]);
+
+  useEffect(() => {
+    const check = window.addEventListener(
+      "scroll",
+      (e) => {
+        console.log(e.currentTarget, "useEfect 2");
+      },
+      true
+    );
+  }, []);
+  console.log(window);
+
+  const manipuateData = async () => {
+    props.getStarships();
+  };
 
   const toggleMenu = () => {
     setCollapsed(!collapsed);
@@ -47,9 +65,10 @@ function Home(props) {
   };
 
   const RenderCard = () => {
-    const renderItem = starships.map((item) => {
+    const renderItem = starships.map((item, index) => {
       return (
         <Card
+          key={index.toString()}
           onClick={() => history.push("/details")}
           className="card"
           style={{
@@ -57,6 +76,7 @@ function Home(props) {
             marginBottom: "2vh",
             marginTop: "2vh",
           }}
+          id={index + 1}
         >
           <Row gutter={[24, 40]}>
             <Col span={12}>
@@ -83,7 +103,9 @@ function Home(props) {
         </Card>
       );
     });
-    return renderItem;
+
+    if (dataStarship.length < 0) return <Loader />;
+    else return renderItem;
   };
 
   return (
@@ -173,13 +195,15 @@ function Home(props) {
             overflowY: "scroll",
           }}
         >
-          <Content>
+          <Content onScroll={(e) => console.log(e)}>
             <RenderCard />
           </Content>
 
           <Image
             width="28vw"
-            style={{ position: "absolute" }}
+            style={{
+              position: "absolute",
+            }}
             src={starshipsImage}
             placeholder={
               <Image preview={false} width="28vw" src={starshipsImage} />
@@ -193,6 +217,8 @@ function Home(props) {
 
 const mapStateToProps = (state) => ({
   starships: state.HomeReducer.starships,
+  prevPage: state.HomeReducer.prevPage,
+  nextPage: state.HomeReducer.nextPage,
 });
 
 const mapDispatchToProps = {
