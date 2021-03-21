@@ -1,9 +1,17 @@
 export const GET_STARSHIPS = "GET_STARSHIPS";
+export const GET_SEARCH = "GET_SEARCH";
 export const SET_STARSHIPS = "SET_STARSHIPS";
 
 export const getStarships = () => {
   return {
     type: GET_STARSHIPS,
+  };
+};
+
+export const getSearch = (text) => {
+  return {
+    type: GET_SEARCH,
+    text,
   };
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { Card, Col, Image, Layout, Menu, Row } from "antd";
+import { Card, Col, Image, Layout, Menu, Row, Input } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -8,23 +8,33 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import starshipsImage from "../../assets/images/starships.png";
+import history from "../../routes/history";
 
 // redux
 import { connect } from "react-redux";
-import { getStarships } from "./redux/action";
-import history from "../../routes/history";
+import { getStarships, getSearch } from "./redux/action";
 
 const { Header, Sider, Content } = Layout;
+const { Search } = Input;
+
 function Home(props) {
   const { starships } = props;
   const [collapsed, setCollapsed] = useState(true);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    props.getStarships();
-  }, []);
+    if (search.length === 0) {
+      props.getStarships();
+    }
+  }, [search]);
 
   const toggleMenu = () => {
     setCollapsed(!collapsed);
+  };
+
+  const onChange = (e) => {
+    props.getSearch(e.target.value);
+    setSearch(e.target.value);
   };
 
   const RenderContentData = ({ title, content }) => {
@@ -128,6 +138,10 @@ function Home(props) {
         <Header
           className="site-layout-background"
           style={{
+            display: "flex",
+            flex: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
             paddingRight: "2vw",
             paddingLeft: "2vw",
             color: "white",
@@ -141,6 +155,12 @@ function Home(props) {
               onClick: toggleMenu,
             }
           )}
+          <Search
+            placeholder="Search name or model"
+            style={{ width: "40vw" }}
+            onChange={onChange}
+            enterButton
+          />
         </Header>
         <Content
           className="site-layout-background"
@@ -177,6 +197,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getStarships,
+  getSearch,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
