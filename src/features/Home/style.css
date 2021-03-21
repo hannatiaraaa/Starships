@@ -47,3 +47,48 @@
   font-weight: 600;
   text-transform: capitalize;
 }
+
+@media screen and (max-width: 640px) {
+  .content {
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .data {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content {
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+
+  .title {
+    font-size: 0.5rem;
+  }
+
+  .data {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .content {
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+
+  .title {
+    font-size: 0.4rem;
+  }
+
+  .data {
+    font-size: 0.6rem;
+  }
+}

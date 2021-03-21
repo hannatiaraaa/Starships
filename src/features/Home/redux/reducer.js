@@ -1,9 +1,8 @@
-import { SET_STARSHIPS } from "./action";
+import { SET_STARSHIPS, SET_ADDITIONAL } from "./action";
 
 const initialState = {
   starships: [],
-  prevPage: "",
-  nextPage: "",
+  nextPage: 1,
 };
 
 export const HomeReducer = (state = initialState, action) => {
@@ -12,8 +11,12 @@ export const HomeReducer = (state = initialState, action) => {
       return {
         ...state,
         starships: action.payload,
-        prevPage: action.previousPage,
-        nextPage: action.nextPage,
+      };
+
+    case SET_ADDITIONAL:
+      return {
+        ...state,
+        nextPage: action.payload ? action.payload : state.nextPage + 1,
       };
 
     default:
